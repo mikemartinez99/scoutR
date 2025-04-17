@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Michael", "Martinez", , "mike.j.martinez99@gmail.com", role = c("author"))
 Description: Utility functions for single-cell omics data (RNA and ATAC).
-License: `use_gpl3_license()` 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
