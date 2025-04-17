@@ -1,11 +1,16 @@
 # Single-cell Omics Utilities in R (scoutR)
-This package contains utility functions to help navigate single-cell omics data (RNA, ATAC, and 10X Multiome)
+This package contains utility functions to help navigate and preprocess single-cell omics data (RNA, ATAC, and 10X Multiome). 
+
+**Function authors:** Dr. Owen Wilkins, Mike Martinez M.S.
+
+**Package creator:** Mike Martinez M.S.
 
 ![Alt text](/img/scoutR_hex.png)
 
 # Table of Contents
 - [Installation](#installation)
-- [Examples](#examples)
+- [Functions](#functions)
+- [Vignettes](#vignettes)
 - [Contact](#contact)
 
 ## Installation
@@ -20,8 +25,13 @@ library(scoutR)
 
 ```
 
-## Examples
+## Functions
+|Function|Purpose|
+|--------|-------|
+|`read_10x_multi`|When multiple 10x outputs are present in a directory, read in the filtered feature barcode matrices and generate seurat object for each sample. Output is saved as a list of seurat objects with unique names|
+|`preprocess_RNA_basic`|Filter seurat objects based on nCount_RNA threshold and add additional metadata (percent mitochondria and log10 genes per umi)|
 
+## Vignettes
 
 ## Contact
 
