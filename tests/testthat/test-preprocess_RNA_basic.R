@@ -62,3 +62,7 @@ test_that("errors messages work", {
     paste0("No cells found")
   )
 })
+
+#----- Test overall function
+result <- preprocess_RNA_basic(seurat_obj, ident = "Test1", nCount_thresh = 100, mito_gene_prefix = "^mt-")
+resultMeta <- result@meta.data
