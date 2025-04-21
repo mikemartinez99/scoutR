@@ -21,7 +21,7 @@ rownames(counts)[1:3] <- paste0("mt-", 1:3)
 seurat_obj <- CreateSeuratObject(counts = counts)
 
 #------------------------------------------------------------------------------#
-# UNIT TESTS
+# UNIT TESTS!ß
 #------------------------------------------------------------------------------#
 
 #----- Test that filtering works
