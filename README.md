@@ -3,8 +3,6 @@
 # Single-cell Omics Utilities in R (scoutR)
 This package contains utility functions to help navigate and preprocess single-cell omics data (RNA, ATAC, and 10X Multiome). 
 
-**Function authors:** Dr. Owen Wilkins, Mike Martinez M.S.
-
 **Package creator:** Mike Martinez M.S.
 
 ![Alt text](/img/scoutR_hex.png)
