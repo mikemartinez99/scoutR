@@ -5,7 +5,7 @@ This package contains utility functions to help navigate and preprocess single-c
 
 **Package creator:** Mike Martinez M.S.
 
-![Alt text](/img/scoutR_hex.png)
+<img src="/img/SCoutR_HexLogo.png" width="350px" height="400px" />
 
 # Table of Contents
 - [Installation](#installation)
