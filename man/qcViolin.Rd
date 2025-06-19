@@ -4,7 +4,15 @@
 \alias{qcViolin}
 \title{qcViolin}
 \usage{
-qcViolin(metadata, variable, logTransform, sampleColors, figDir)
+qcViolin(
+  metadata,
+  variable,
+  logTransform,
+  sampleColors,
+  figDir,
+  width = width,
+  height = height
+)
 }
 \arguments{
 \item{metadata}{A dataframe containing all metadata of interest for samples}
@@ -16,6 +24,10 @@ qcViolin(metadata, variable, logTransform, sampleColors, figDir)
 \item{sampleColors}{A color vector for samples}
 
 \item{figDir}{A directory path ending in "/" to hold output files}
+
+\item{width}{Figure width}
+
+\item{height}{Figure height}
 }
 \value{
 A ggplot object
@@ -27,10 +39,10 @@ to plot panelled figure of all QC metrics.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
-qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir),
-qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir),
-qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir),
-qcViolin(metadata, "nFeature_peaks", logTransform = FALSE, colors, figDir))
+arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
+qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir, width = 8, height = 8),
+qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir, width = 8, height = 8),
+qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir, width = 8, height = 8),
+qcViolin(metadata, "nFeature_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8))
 ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
 }
