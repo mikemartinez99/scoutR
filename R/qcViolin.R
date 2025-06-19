@@ -20,7 +20,7 @@
 #' @returns A ggplot object
 #' 
 #' @examples # Generate individual plots as well as a combined one
-#' @examples arrangedViolins <- ggarrange(customViolin2(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
+#' @examples arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
 #' @examples qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir),
 #' @examples qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir),
 #' @examples qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir),

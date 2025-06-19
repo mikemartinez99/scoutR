@@ -27,7 +27,7 @@ to plot panelled figure of all QC metrics.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedViolins <- ggarrange(customViolin2(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
+arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
 qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir),
 qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir),
 qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir),
