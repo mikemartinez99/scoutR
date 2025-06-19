@@ -1,12 +1,10 @@
-## IN DEVELOPMENT ##
-
 # Single-cell Omics Utilities in R (scoutR)
+
 ![status](https://img.shields.io/badge/status-in--development-orange)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![R Version](https://img.shields.io/badge/R-4.4.3-blue)
-This package contains utility functions to help navigate and preprocess single-cell omics data (RNA, ATAC, and 10X Multiome). 
 
-**Package creator:** Mike Martinez M.S.
+Package containing helpful utilities and plotting functions for single cell omics analysis (scRNA, scATAC, 10X multiome)
 
 <img src="/img/SCoutR_HexLogo.png" width="350px" height="400px" />
 
