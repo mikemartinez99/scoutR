@@ -4,7 +4,7 @@
 \alias{qcRidges}
 \title{qcRidges}
 \usage{
-qcRidges(metadata, variable, logTransform, sampleColors, figDir, width, height)
+qcRidges(metadata, variable, sampleColors, figDir, width, height)
 }
 \arguments{
 \item{metadata}{A dataframe containing all metadata of interest for samples}

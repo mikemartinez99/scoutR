@@ -27,7 +27,7 @@
 #' @examples qcRidges(metadata, "nFeature_peaks", colors, figDir, width = 8, height = 10)
 #' @examples ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
 
-qcRidges <- function(metadata, variable, logTransform, sampleColors, figDir, width, height) {
+qcRidges <- function(metadata, variable, sampleColors, figDir, width, height) {
   
   # Convert `variable` to a symbol
   variable <- ensym(variable)
@@ -38,7 +38,7 @@ qcRidges <- function(metadata, variable, logTransform, sampleColors, figDir, wid
     theme_classic(base_size = 16) +  
     labs(x = "label", 
          y = "") +
-    scale_fill_manual(values = colors) +  
+    scale_fill_manual(values = sampleColors) +  
     theme(axis.title = element_text(size = 14, face = "bold"),
           axis.text = element_text(size = 12, face = "bold"),
           legend.position = "none")
