@@ -9,7 +9,7 @@
 #' @export
 #' @import Seurat
 #'
-#' @examples # list of seurat objects with naems
+#' @examples # list of seurat objects with names
 #' @examples objects <- c("obj1", "obj2", "obj3", "obj4")
 #' @examples # Vector of sample IDs
 #' @examples sampleIDs <- c("S1", "S2", "S3", "S4")

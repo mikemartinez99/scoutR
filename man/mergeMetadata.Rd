@@ -16,7 +16,7 @@ A dataframe of merged metadata
 Quick way to merge metadata actoss multiple Seurat objects into one master dataframe for plotting purposes
 }
 \examples{
-# list of seurat objects with naems
+# list of seurat objects with names
 objects <- c("obj1", "obj2", "obj3", "obj4")
 # Vector of sample IDs
 sampleIDs <- c("S1", "S2", "S3", "S4")
