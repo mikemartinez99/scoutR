@@ -10,6 +10,7 @@ A collection of utility and plotting functions to streamline the processing of s
 
 # 🛠️ Documentation under construction...stay tuned!
 
+
 ## Installation
 
 To intall the scoutR package through R, run the following command:
@@ -21,6 +22,22 @@ devtools::install_github("mmartinez99/scoutR/")
 library(scoutR)
 
 ```
+
+## Functionality
+
+- Add options to plotting functions to color/group by another metadata feature besides orig.ident, but keep orig.ident as the default
+
+|Function|Purpose|
+|--------|-------|
+|`read_10x_GEX`|Reads in GEX data from 10x into a `Seurat` object, filters for user-specified min.cells and min.features|
+|`read_10x_ATAC`|Reads in chromatin-accessibility data into a `Signac` and `Seurat` object, filters for user-specified min.cells and min.features, as well as user-specified blacklist regions, plots density plots of QC metrics|
+|`mergeMeta`|Merge metadata from multiple `Seurat` objects into a single dataframe for plotting purposes|
+|`markOutliers`|Wrapper function for `scuttle::isOutlier` to operate on multiple metadata columns at a time|
+|`plotOutliers`|Plot violin functions of metadata categories, highlights outlier distributions in red|
+|`qcViolin`|Plot violin plots of metadata categories split by `orig.ident`|
+|`qcRidges`|Plot ridge plots of metadata categories split by `orig.ident`|
+|`qcScatter`|Plot scatter plot of two metadata cateogories colored by `orig.ident` with distribution annotation and sample facet features`|
+
 
 ## Contact
 
