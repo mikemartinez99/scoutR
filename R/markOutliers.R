@@ -11,7 +11,7 @@
 #' @param x A seurat object
 #' @param vars A vector column names in seurat object metadata slot to be tested for outliers
 #' @param nmad The number of median absolute deviations to consider a cell an outlier. 3-5 is recommended. 3 is more stringent. 
-#' @param bound. One of "higher", "lower", or "both"
+#' @param bound One of "higher", "lower", or "both"
 #'
 #'
 #' @returns A list of seurat objects (one per sample)
