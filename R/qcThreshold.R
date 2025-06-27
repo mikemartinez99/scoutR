@@ -33,7 +33,7 @@
 #' @examples ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
 
 
-qcViolin <- function(metadata, variable, threshold, logTransform, sampleColors, figDir, width = width, height = height) {
+qcThreshold <- function(metadata, variable, threshold, logTransform, sampleColors, figDir, width = width, height = height) {
   
   # Convert `variable` to a symbol
   variable <- ensym(variable)
