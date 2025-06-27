@@ -3,7 +3,6 @@
 export(markOutliers)
 export(mergeMetadata)
 export(plotOutliers)
-export(preprocess_RNA_basic)
 export(qcRidges)
 export(qcScatter)
 export(qcThreshold)
