@@ -17,8 +17,7 @@ To intall the scoutR package through R, run the following command:
 
 ```r
 library(devtools)
-devtools::install_github("mmartinez99/scoutR/")
-
+devtools::install_github("https://github.com/mikemartinez99/scoutR", force = TRUE)
 library(scoutR)
 
 ```
@@ -31,12 +30,14 @@ library(scoutR)
 |--------|-------|
 |`read_10x_GEX`|Reads in GEX data from 10x into a `Seurat` object, filters for user-specified min.cells and min.features|
 |`read_10x_ATAC`|Reads in chromatin-accessibility data into a `Signac` and `Seurat` object, filters for user-specified min.cells and min.features, as well as user-specified blacklist regions, plots density plots of QC metrics|
-|`mergeMeta`|Merge metadata from multiple `Seurat` objects into a single dataframe for plotting purposes|
+|`mergeMetadata`|Merge metadata from multiple `Seurat` objects into a single dataframe for plotting purposes|
 |`markOutliers`|Wrapper function for `scuttle::isOutlier` to operate on multiple metadata columns at a time|
 |`plotOutliers`|Plot violin functions of metadata categories, highlights outlier distributions in red|
 |`qcViolin`|Plot violin plots of metadata categories split by `orig.ident`|
+|`qcThreshold`|Plot violin plots of metadata categories split by `orig.ident` with a horizontal line to indicate thresholds|
 |`qcRidges`|Plot ridge plots of metadata categories split by `orig.ident`|
 |`qcScatter`|Plot scatter plot of two metadata cateogories colored by `orig.ident` with distribution annotation and sample facet features`|
+|`trackCells`|Diagnostic tool: given a named list of thresholds to test, tracks how many cells you would lose per sample and outputs as a data frame (no actual filtering occurs here)|
 
 
 ## Contact
