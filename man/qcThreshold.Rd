@@ -42,10 +42,9 @@ to plot panelled figure of all QC metrics.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedViolins <- ggarrange(qcViolin(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "nFeature_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8))
-ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
+arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, width = 8, height = 8),
+qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, width = 8, height = 8),
+qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, width = 8, height = 8),
+qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, width = 8, height = 8))
+ggsave(paste0(figDir, "ATAC_Threshold_Summary.png"), arrangedThresholds, width = 16, height = 10)
 }

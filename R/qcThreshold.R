@@ -25,12 +25,11 @@
 #' @returns A ggplot object
 #' 
 #' @examples # Generate individual plots as well as a combined one
-#' @examples arrangedViolins <- ggarrange(qcViolin(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-#' @examples qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir, width = 8, height = 8),
-#' @examples qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-#' @examples qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-#' @examples qcViolin(metadata, "nFeature_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8))
-#' @examples ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
+#' @examples arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, width = 8, height = 8),
+#' @examples qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, width = 8, height = 8),
+#' @examples qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, width = 8, height = 8),
+#' @examples qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, width = 8, height = 8))
+#' @examples ggsave(paste0(figDir, "ATAC_Threshold_Summary.png"), arrangedThresholds, width = 16, height = 10)
 
 
 qcThreshold <- function(metadata, variable, threshold, logTransform, sampleColors, figDir, width = width, height = height) {
