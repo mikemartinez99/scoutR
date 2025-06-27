@@ -11,6 +11,7 @@
 #' @import ggplot2
 #' @import rlang
 #' @import ggridges
+#' @export
 #'
 #' @param metadata A dataframe containing all metadata of interest for samples
 #' @param variable A valid column name present in your metadata dataframe

@@ -10,6 +10,7 @@
 #' @import ggplot2
 #' @import ggExtra
 #' @import rlang
+#' @export
 #'
 #' @param metadata A dataframe containing all metadata of interest for samples
 #' @param XVar A valid column name present in your metadata dataframe to plot on the X-axis

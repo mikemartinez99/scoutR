@@ -11,6 +11,7 @@
 #' @import ggExtra
 #' @import rlang
 #' @import scuttle
+#' @export
 #'
 #' @param metadata A dataframe containing all metadata of interest for samples
 #' @param variable A valid column in the metadata dataframe

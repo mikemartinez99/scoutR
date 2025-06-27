@@ -1,6 +1,6 @@
-#' @title qcViolin
+#' @title qcThreshold
 #' 
-#' @description Generates publication quality quality control violins. Requires that you concatenate all
+#' @description Generates publication quality quality control violins showing thresholds. Requires that you concatenate all
 #' sample metadata across multiple objects into one dataframe. Can be used in conjunction with `ggpubr::ggarrange`
 #' to plot panelled figure of all QC metrics. 
 #' 
@@ -14,6 +14,7 @@
 #'
 #' @param metadata A dataframe containing all metadata of interest for samples
 #' @param variable A valid column name present in your metadata dataframe
+#' @param threshold A threshold for your metadata category of interest
 #' @param logTransform Logical, whether or not to log transform the y-axis
 #' @param sampleColors A color vector for samples
 #' @param figDir A directory path ending in "/" to hold output files
@@ -23,7 +24,7 @@
 #' @returns A ggplot object
 #' 
 #' @examples # Generate individual plots as well as a combined one
-#' @examples arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
+#' @examples arrangedViolins <- ggarrange(qcViolin(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
 #' @examples qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir, width = 8, height = 8),
 #' @examples qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir, width = 8, height = 8),
 #' @examples qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir, width = 8, height = 8),
@@ -31,7 +32,7 @@
 #' @examples ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
 
 
-qcViolin <- function(metadata, variable, logTransform, sampleColors, figDir, width = width, height = height) {
+qcViolin <- function(metadata, variable, threshold, logTransform, sampleColors, figDir, width = width, height = height) {
   
   # Convert `variable` to a symbol
   variable <- ensym(variable)
@@ -48,12 +49,13 @@ qcViolin <- function(metadata, variable, logTransform, sampleColors, figDir, wid
            x = "", 
            fill = "Sample",
            title = label) +
+      geom_hline(yintercept = threshold, linetype = "dashed") +
       scale_fill_manual(values = sampleColors) +  
       theme(axis.text = element_text(angle = 90, face = "bold"),
             legend.position = "none")
     
     # Set filename
-    fileName <- paste0("Log_", variable, "_QC_Violins.png")
+    fileName <- paste0("Log_", variable, "_QC_Threshold.png")
     ggsave(paste0(figDir, fileName), p1, width = 8, height = 8)
     
   } else {
@@ -67,11 +69,12 @@ qcViolin <- function(metadata, variable, logTransform, sampleColors, figDir, wid
            fill = "Sample",
            title = label) +
       scale_fill_manual(values = sampleColors) +  
+      geom_hline(yintercept = threshold, linetype = "dashed") +
       theme(axis.text = element_text(angle = 90, face = "bold"),
             legend.position = "none")
     
     # Set filename
-    fileName <- paste0(variable, "_QC_Violins.png")
+    fileName <- paste0(variable, "_QC_Threshold.png")
     ggsave(paste0(figDir, fileName), p1, width = width, height = height)
     
   }
