@@ -2,7 +2,10 @@ Package: scoutR
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person("Michael", "Martinez", "mike.j.martinez99@gmail.com", role = c("aut"))
+    person(given = "Michael", 
+           family = "Martinez", 
+           email = "mike.j.martinez99@gmail.com", 
+           role = c("aut", "cre"))
 Description: Utility functions for single-cell omics data (RNA and ATAC).
 License: MIT + file LICENSE
 Encoding: UTF-8
