@@ -19,14 +19,14 @@
 mergeMetadata <- function(x) {
   
   #----- Check that sample names match length of list
-  if (!is.list(seurat_list)) {
+  if (!is.list(x)) {
     stop("Input must be a list of Seurat objects.")
   } 
   
   #----- Assign sample names if not provided
-  sample_names <- names(seurat_list)
+  sample_names <- names(x)
   if (is.null(sample_names) || any(sample_names == "")) {
-    sample_names <- paste0("sample", seq_along(seurat_list))
+    sample_names <- paste0("sample", seq_along(x))
   }
   
   #----- Merge metadata
