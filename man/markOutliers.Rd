@@ -13,7 +13,7 @@ markOutliers(x, vars = c(...), nmad, bound)
 
 \item{nmad}{The number of median absolute deviations to consider a cell an outlier. 3-5 is recommended. 3 is more stringent.}
 
-\item{bound.}{One of "higher", "lower", or "both"}
+\item{bound}{One of "higher", "lower", or "both"}
 }
 \value{
 A list of seurat objects (one per sample)
@@ -24,7 +24,6 @@ Wrapper function for \code{scuttle::isOutlier}. If multiple samples need to be u
 \examples{
 # Call the function on a single sample
 outlierObj <- markoutliers(seuratObj, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher")
-
 # Call the function across multiple Seurat objects
 OutlierList <- map(samples, ~ markOutliers(.x, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher"))
 }
