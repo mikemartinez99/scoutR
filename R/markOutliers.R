@@ -18,7 +18,6 @@
 #'
 #' @examples # Call the function on a single sample
 #' @examples outlierObj <- markoutliers(seuratObj, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher")
-#'
 #' @examples # Call the function across multiple Seurat objects
 #' @examples OutlierList <- map(samples, ~ markOutliers(.x, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher"))
 

@@ -7,6 +7,8 @@
 #' 
 #' @importFrom purrr map 
 #' @import Seurat
+#' 
+#' @export
 #'
 #' @param sampleDir Path to the sample directory containing multiple subfolders (one per sample)
 #' @param sample A vector of sample names that correspond to how subfolders in `sampleDir` are named

@@ -6,8 +6,9 @@
 #' @param x list of Seurat objects (could be named or un-named, but a named list is recommended)
 #'
 #' @returns A dataframe of merged metadata
-#' @export
 #' @import Seurat
+#' 
+#' @export
 #'
 #' @examples # list of seurat objects with names
 #' @examples objects <- c("obj1", "obj2", "obj3", "obj4")

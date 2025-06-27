@@ -10,6 +10,8 @@
 #' @import Seurat
 #' @import Signac
 #' @import GenomicRanges
+#' 
+#' @export
 #'
 #' @param sample A sample name (must be same name as your cellranger outputs to dynamically construct file paths)
 #' @param files_dir A directory path ending in "/" where raw 10x data lives
