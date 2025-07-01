@@ -34,7 +34,7 @@ library(scoutR)
 |`markOutliers`|Wrapper function for `scuttle::isOutlier` to operate on multiple metadata columns at a time|
 |`plotOutliers`|Plot violin functions of metadata categories, highlights outlier distributions in red|
 |`qcViolin`|Plot violin plots of metadata categories split by `orig.ident`|
-|`qcThreshold`|Plot violin plots of metadata categories split by `orig.ident` with a horizontal line to indicate thresholds|
+|`qcThreshold`|Plot violin or ridge-plots plots of metadata categories split by `orig.ident` with a line to demarcate potential filtering thresholds|
 |`qcRidges`|Plot ridge plots of metadata categories split by `orig.ident`|
 |`qcScatter`|Plot scatter plot of two metadata cateogories colored by `orig.ident` with distribution annotation and sample facet features`|
 |`trackCells`|Diagnostic tool: given a named list of thresholds to test, tracks how many cells you would lose per sample and outputs as a data frame (no actual filtering occurs here)|
