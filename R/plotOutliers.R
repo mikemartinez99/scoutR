@@ -36,7 +36,7 @@ plotOutliers <- function(metadata, variable, outlierData, outDir, width, height)
   outlierVar <- ensym(outlierData)
   label <- gsub("_", " ", variable)
   
-  p1 <- ggplot(outliers, aes(x = orig.ident, y = .data[[as_string(var)]])) +
+  p1 <- ggplot(metadata, aes(x = orig.ident, y = .data[[as_string(var)]])) +
     geom_jitter(aes(color = .data[[as_string(outlierVar)]]), width = 0.2, alpha = 0.5, size = 1.5) +
     geom_violin(fill = "gray90", color = "gray40") +
     geom_boxplot(width = 0.2, outliers = FALSE) +
