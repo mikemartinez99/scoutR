@@ -19,64 +19,67 @@
 #' @param logTransform Logical, whether or not to log transform the y-axis
 #' @param sampleColors A color vector for samples
 #' @param figDir A directory path ending in "/" to hold output files
+#' @param plottype One of "violin" or "ridgeplot"
 #' @param width Figure width
 #' @param height Figure height
 #'
 #' @returns A ggplot object
 #' 
 #' @examples # Generate individual plots as well as a combined one
-#' @examples arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, width = 8, height = 8),
-#' @examples qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, width = 8, height = 8),
-#' @examples qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, width = 8, height = 8),
-#' @examples qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, width = 8, height = 8))
+#' @examples arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, plottype = c("violin"), width = 8, height = 8),
+#' @examples qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, plottype = c("violin"), width = 8, height = 8),
+#' @examples qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, plottype = c("ridgeplot"), width = 8, height = 8),
+#' @examples qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, plottype = c("ridgeplot"), width = 8, height = 8))
 #' @examples ggsave(paste0(figDir, "ATAC_Threshold_Summary.png"), arrangedThresholds, width = 16, height = 10)
 
 
-qcThreshold <- function(metadata, variable, threshold, logTransform, sampleColors, figDir, width = width, height = height) {
+qcThreshold <- function(metadata, variable, threshold, logTransform, sampleColors, figDir,
+                        plottype = c("violin", "ridgeplot"), width = 8, height = 8) {
   
-  # Convert `variable` to a symbol
-  variable <- ensym(variable)
-  label <- gsub("_", " ", variable)
+  # Match arg for safety
+  plottype <- match.arg(plottype)
   
+  # Convert variable to symbol and label
+  variable <- rlang::ensym(variable)
+  var_name <- rlang::as_string(variable)
+  label <- gsub("_", " ", var_name)
   
-  if (logTransform == TRUE) {
-    p1 <- ggplot(metadata, aes(x = orig.ident, y = log(.data[[as_string(variable)]]), fill = orig.ident)) +
-      geom_point(position = position_jitter(height = 0.2, width = 0.2), shape = 21, size = 1, alpha = 0.6) +
-      geom_violin(alpha = 0.7) +
-      geom_boxplot(outliers = FALSE, width = 0.2) +
-      theme_classic(base_size = 16) +
-      labs(y = paste0("Log(", variable , ")"),
-           x = "", 
-           fill = "Sample",
-           title = label) +
-      geom_hline(yintercept = threshold, linetype = "dashed") +
-      scale_fill_manual(values = sampleColors) +  
-      theme(axis.text = element_text(angle = 90, face = "bold"),
-            legend.position = "none")
-    
-    # Set filename
-    fileName <- paste0("Log_", variable, "_QC_Threshold.png")
-    ggsave(paste0(figDir, fileName), p1, width = 8, height = 8)
-    
+  # Apply log transformation if requested
+  if (logTransform) {
+    metadata[[var_name]] <- log(metadata[[var_name]])
+    ylabel <- paste0("Log(", var_name, ")")
+    filename_prefix <- "Log_"
   } else {
-    p1 <- ggplot(metadata, aes(x = orig.ident, y = .data[[as_string(variable)]], fill = orig.ident)) +
-      geom_point(position = position_jitter(height = 0.2, width = 0.2), shape = 21, size = 1, alpha = 0.6) +
-      geom_violin(alpha = 0.7) +
-      geom_boxplot(outliers = FALSE, width = 0.2) +
-      theme_classic(base_size = 16) +
-      labs(y = variable, 
-           x = "", 
-           fill = "Sample",
-           title = label) +
-      scale_fill_manual(values = sampleColors) +  
-      geom_hline(yintercept = threshold, linetype = "dashed") +
-      theme(axis.text = element_text(angle = 90, face = "bold"),
-            legend.position = "none")
-    
-    # Set filename
-    fileName <- paste0(variable, "_QC_Threshold.png")
-    ggsave(paste0(figDir, fileName), p1, width = width, height = height)
-    
+    ylabel <- var_name
+    filename_prefix <- ""
   }
-  return(p1)
-} 
+  
+  # Build plots
+  if (plottype == "violin") {
+    p <- ggplot(metadata, aes(x = orig.ident, y = .data[[var_name]], fill = orig.ident)) +
+      geom_point(position = position_jitter(width = 0.2, height = 0.2), shape = 21, size = 1, alpha = 0.6) +
+      geom_violin(alpha = 0.7) +
+      geom_boxplot(outlier.shape = NA, width = 0.2) +
+      theme_classic(base_size = 16) +
+      labs(y = ylabel, x = "", fill = "Sample", title = label) +
+      geom_hline(yintercept = threshold, linetype = "dashed") +
+      scale_fill_manual(values = sampleColors) +
+      theme(axis.text.x = element_text(angle = 90, face = "bold"),
+            legend.position = "none")
+  } else if (plottype == "ridgeplot") {
+    suppressWarnings(require(ggridges))  # ensure ggridges is loaded
+    p <- ggplot(metadata, aes(x = .data[[var_name]], y = orig.ident, fill = orig.ident)) +
+      geom_density_ridges(alpha = 0.7, scale = 1) +
+      geom_vline(xintercept = threshold, linetype = "dashed") +
+      theme_classic(base_size = 16) +
+      labs(x = ylabel, y = "Sample", fill = "Sample", title = label) +
+      scale_fill_manual(values = sampleColors) +
+      theme(legend.position = "none")
+  }
+  
+  # Save plot
+  fileName <- paste0(filename_prefix, var_name, "_QC_", plottype, ".png")
+  ggsave(file.path(figDir, fileName), p, width = width, height = height)
+  
+  return(p)
+}

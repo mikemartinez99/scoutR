@@ -22,7 +22,6 @@
 #' @examples              TSS_enrichment_low = "TSS.enrichment > 2",
 #' @examples              TSS_enrichment_high = "TSS.enrichment < 15",
 #' @examples              nucleosome_signal = "nucleosome_signal < 4")
-#' @examples
 #' @examples # Run the function
 #' @examples cellCounts <- trackCells(atacList, thresholds)
 

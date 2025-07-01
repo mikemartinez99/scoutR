@@ -11,8 +11,9 @@ qcThreshold(
   logTransform,
   sampleColors,
   figDir,
-  width = width,
-  height = height
+  plottype = c("violin", "ridgeplot"),
+  width = 8,
+  height = 8
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ qcThreshold(
 
 \item{figDir}{A directory path ending in "/" to hold output files}
 
+\item{plottype}{One of "violin" or "ridgeplot"}
+
 \item{width}{Figure width}
 
 \item{height}{Figure height}
@@ -42,9 +45,9 @@ to plot panelled figure of all QC metrics.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, width = 8, height = 8),
-qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, width = 8, height = 8))
+arrangedThresholds <- ggarrange(qcThreshold(metadata, "pct_reads_in_peaks", threshold = 50, logTransform = FALSE, colors, figDir, plottype = c("violin"), width = 8, height = 8),
+qcThreshold(metadata, "atac_peak_region_fragments", threshold = 20000, logTransform = TRUE, colors, figDir, plottype = c("violin"), width = 8, height = 8),
+qcThreshold(metadata, "TSS.enrichment", threshold = 2, logTransform = FALSE, colors, figDir, plottype = c("ridgeplot"), width = 8, height = 8),
+qcThreshold(metadata, "nucleosome_signal", threshold = 4,  logTransform = FALSE, colors, figDir, plottype = c("ridgeplot"), width = 8, height = 8))
 ggsave(paste0(figDir, "ATAC_Threshold_Summary.png"), arrangedThresholds, width = 16, height = 10)
 }
