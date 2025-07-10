@@ -4,3 +4,4 @@
 .Ruserdata
 .Rbuildignore
 scoutR.Rproj
+inst/doc
