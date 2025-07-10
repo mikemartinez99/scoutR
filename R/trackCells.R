@@ -27,7 +27,7 @@
 
 trackCells <- function(sampleList, thresholds) {
   if (!is.list(sampleList) || is.null(names(sampleList))) {
-    stop("`sampleList` must be a *named* list of objects with @meta.data.")
+    stop("`sampleList` must be a *named* list of Seurat objects.")
   }
   
   if (!is.list(thresholds) || length(thresholds) == 0) {
@@ -45,13 +45,12 @@ trackCells <- function(sampleList, thresholds) {
     
     if (!"meta.data" %in% slotNames(x)) {
       warning("Sample ", i, " does not have a @meta.data slot. Skipping.")
-      counter <- counter + 1
-      setTxtProgressBar(pb, counter)
       next
     }
     
     nCellsPre <- nrow(x@meta.data)
     removal_counts <- numeric(length(thresholds))
+    failed_barcodes_all <- c()
     names(removal_counts) <- names(thresholds)
     
     for (filter_name in names(thresholds)) {
@@ -76,10 +75,16 @@ trackCells <- function(sampleList, thresholds) {
         return(x)
       })
       
-      removal_counts[filter_name] <- nCellsPre - nrow(x_filt@meta.data)
+      passed_barcodes <- colnames(x_filt)
+      failed_barcodes <- setdiff(colnames(x), passed_barcodes)
+      
+      # Save failed barcodes
+      failed_barcodes_all <- union(failed_barcodes_all, failed_barcodes)
+      
+      removal_counts[filter_name] <- length(failed_barcodes)
     }
     
-    total_lost <- sum(removal_counts, na.rm = TRUE)
+    total_lost <- length(failed_barcodes_all)
     
     row_df <- data.frame(Sample = i,
                          Original_Count = nCellsPre,
@@ -88,11 +93,9 @@ trackCells <- function(sampleList, thresholds) {
                          stringsAsFactors = FALSE)
     
     atacFiltData[[i]] <- row_df
-    
   }
   
   atacFiltData <- do.call(rbind, atacFiltData)
-  
   numeric_cols <- setdiff(colnames(atacFiltData), "Sample")
   atacFiltData[numeric_cols] <- lapply(atacFiltData[numeric_cols], as.numeric)
   
