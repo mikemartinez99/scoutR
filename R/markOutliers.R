@@ -49,7 +49,7 @@ markOutliers <- function(x, vars = c(...), nmad, bound) {
   
   #----- Run
   for (i in vars) {
-    message(paste0("Finding ", nmad, " outliers in ", i))
+    message(paste0("Finding ", nmad, " nmad outliers in ", i))
     resCol <- paste0(i, "_outliers")
     meta <- x@meta.data
     
