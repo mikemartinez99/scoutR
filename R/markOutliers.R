@@ -32,9 +32,9 @@ markOutliers <- function(x, vars = c(...), nmad, bound) {
     stop("`nmad` must be a single positive numeric value.")
   }
   
-  valid_bounds <- c("lower", "upper", "both")
+  valid_bounds <- c("lower", "higher", "both")
   if (!(bound %in% valid_bounds)) {
-    stop("`bound` must be one of: 'lower', 'upper', 'both'.")
+    stop("`bound` must be one of: 'lower', 'higher', 'both'.")
   }
   
   if (missing(vars) || length(vars) == 0) {
