@@ -46,7 +46,9 @@ library(scoutR)
 |`trackCells`|Diagnostic tool: given a named list of thresholds to test, tracks how many cells you would lose per sample (taking double-dipping cells into account) and outputs as a data frame (no actual filtering occurs here)|
 |`calcMAD`|Calculates the median-average deviation for a metadata variable of interest at either the upper or lower bound to help determine quantitative thresholds|
 
+## Demo
 
+For a brief demo of functionalities, see [The scoutR Vignette](https://github.com/mikemartinez99/scoutR/blob/main/vignettes/scoutR.md)
 
 
 
