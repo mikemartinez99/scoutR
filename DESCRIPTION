@@ -18,5 +18,13 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     purrr,
-    Seurat
+    Seurat,
+    GenomicRanges,
+    Signac,
+    ggExtra,
+    ggplot2,
+    ggpubr,
+    ggridges,
+    rlang,
+    scuttle
 VignetteBuilder: knitr
