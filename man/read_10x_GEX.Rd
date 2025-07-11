@@ -21,8 +21,9 @@ read_10x_GEX(sampleDir, sample, ident, min.cells, min.features)
 A list of seurat objects (one per sample)
 }
 \description{
-When multiple samples are present, \code{read_10x_GEX} can read each sample's filtered feature barcode matrix h5 file
-and generate a seurat object for each. Each of these seurat objects is then combined into a list of objects.
+When multiple samples are present, \code{read_10x_GEX} can read each sample's
+filtered feature barcode matrix h5 file and generate a \code{Seurat} object for each.
+Each of these seurat objects is then combined into a list of objects.
 This function can be easily parallelized using \code{purrr::map}
 }
 \examples{
@@ -33,5 +34,12 @@ sampleIDs <- c("S1", "S2", "S3")
 # Vector of idents
 idents <- c("A", "B", "C")
 # Call the function
-seuratList <- map(samples, ~ read_10x_multiGEX(.x, ident = idents, min.cells = 10, min.features = 100))
+seuratList <- map(samples, 
+  ~ read_10x_multiGEX(
+    .x, 
+    ident = idents, 
+    min.cells = 10, 
+    min.features = 100)
+    )
+
 }

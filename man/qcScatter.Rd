@@ -39,11 +39,19 @@ qcScatter(
 A ggplot object
 }
 \description{
-Generates publication quality quality control scatter plot for 2 metadata variables. Requires that you concatenate all
-sample metadata across multiple objects into one dataframe.
+Generates publication quality quality control scatter plot for 2
+metadata variables.
 }
 \examples{
 # Generate scatter plot
-compareDists(metadata, Xvar = "log_atac_peak_region_fragments", Yvar = "pct_reads_in_peaks", logTransformX = FALSE, 
-logTransformY = FALSE, colors = colors, outDir = figDir, width = 12, height = 10)
+compareDists(metadata, 
+  Xvar = "log_atac_peak_region_fragments", 
+  Yvar = "pct_reads_in_peaks", 
+  logTransformX = FALSE, 
+  logTransformY = FALSE, 
+  colors = colors, 
+  outDir = figDir, 
+  width = 12, 
+  height = 10)
+
 }

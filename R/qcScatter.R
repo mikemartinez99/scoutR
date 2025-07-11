@@ -1,17 +1,10 @@
+#' @name qcScatter
+#' 
 #' @title qcScatter
 #' 
-#' @description Generates publication quality quality control scatter plot for 2 metadata variables. Requires that you concatenate all
-#' sample metadata across multiple objects into one dataframe. 
+#' @description Generates publication quality quality control scatter plot for 2 
+#' metadata variables. 
 #' 
-#' @importFrom purrr map 
-#' @import Seurat
-#' @import Signac
-#' @import ggpubr
-#' @import ggplot2
-#' @import ggExtra
-#' @import rlang
-#' @export
-#'
 #' @param metadata A dataframe containing all metadata of interest for samples
 #' @param XVar A valid column name present in your metadata dataframe to plot on the X-axis
 #' @param YVar A valid column name present in your metadata dataframe to plot on the Y-axis
@@ -25,8 +18,26 @@
 #' @returns A ggplot object
 #' 
 #' @examples # Generate scatter plot
-#' @examples compareDists(metadata, Xvar = "log_atac_peak_region_fragments", Yvar = "pct_reads_in_peaks", logTransformX = FALSE, 
-#' @examples logTransformY = FALSE, colors = colors, outDir = figDir, width = 12, height = 10)
+#' compareDists(metadata, 
+#'   Xvar = "log_atac_peak_region_fragments", 
+#'   Yvar = "pct_reads_in_peaks", 
+#'   logTransformX = FALSE, 
+#'   logTransformY = FALSE, 
+#'   colors = colors, 
+#'   outDir = figDir, 
+#'   width = 12, 
+#'   height = 10)
+#' 
+#' @importFrom purrr map 
+#' @import Seurat
+#' @import Signac
+#' @import ggpubr
+#' @import ggplot2
+#' @import ggExtra
+#' @import rlang
+#' @import cowplot
+#' 
+#' @export
 
 qcScatter <- function(metadata, Xvar, Yvar, 
                          logTransformX = FALSE, logTransformY = FALSE, 
@@ -42,7 +53,7 @@ qcScatter <- function(metadata, Xvar, Yvar,
   title <- paste0(x_label, " vs ", y_label)
   
   # If Y var is logged
-  p1 <- ggplot(metadata, aes(x = .data[[as_string(variableX)]], y = .data[[as_string(variableY)]], color = orig.ident)) +
+  p1 <- ggplot2::ggplot(metadata, aes(x = .data[[as_string(variableX)]], y = .data[[as_string(variableY)]], color = orig.ident)) +
     geom_point(size = 2, alpha = 0.3) +  
     theme_classic(base_size = 16) +  
     labs(x = x_label, 
@@ -59,9 +70,9 @@ qcScatter <- function(metadata, Xvar, Yvar,
   if (logTransformY) p1 <- p1 + scale_y_log10()
   
   #----- Add margin annotations of distributions
-  p2 <- ggMarginal(p1, groupColour = TRUE, groupFill = FALSE)
+  p2 <- ggExtra::ggMarginal(p1, groupColour = TRUE, groupFill = FALSE)
   
-  p3 <- ggplot(metadata, aes(x = .data[[as_string(variableX)]], y = .data[[as_string(variableY)]], color = orig.ident)) +
+  p3 <- ggplot2::ggplot(metadata, aes(x = .data[[as_string(variableX)]], y = .data[[as_string(variableY)]], color = orig.ident)) +
     geom_point(size = 2, alpha = 0.3) +  
     theme_classic(base_size = 16) +  
     labs(x = x_label, 
@@ -80,7 +91,7 @@ qcScatter <- function(metadata, Xvar, Yvar,
   
   final <- cowplot::plot_grid(p2, p3, ncol = 1)
   fileName <- paste0(Xvar, "_vs_", Yvar, ".png")
-  ggsave(paste0(outDir, fileName), final, width = width, height = height)
+  ggplot2::ggsave(paste0(outDir, fileName), final, width = width, height = height)
   return(final)
 }
 

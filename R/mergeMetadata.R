@@ -1,21 +1,24 @@
-#' @title mergeMeta
+#' @name mergeMetadata
+#' 
+#' @title mergeMetadata
 #' 
 #' @description
-#' Quick way to merge metadata actoss multiple Seurat objects into one master dataframe for plotting purposes
+#' Efficiently merge metadata across multiple Seurat objects into one master dataframe.
 #' 
-#' @param x list of Seurat objects (could be named or un-named, but a named list is recommended)
+#' @param x A named-list of Seurat objects
 #'
 #' @returns A dataframe of merged metadata
+#'
+#' @examples # list of seurat objects with names
+#' objects <- c("obj1", "obj2", "obj3", "obj4")
+#' # Vector of sample IDs
+#' sampleIDs <- c("S1", "S2", "S3", "S4")
+#' names(objects) <- sampleIDs
+#' metadata <- mergeMetadata(objects)
+#' 
 #' @import Seurat
 #' 
 #' @export
-#'
-#' @examples # list of seurat objects with names
-#' @examples objects <- c("obj1", "obj2", "obj3", "obj4")
-#' @examples # Vector of sample IDs
-#' @examples sampleIDs <- c("S1", "S2", "S3", "S4")
-#' @examples names(objects) <- sampleIDs
-#' @examples metadata <- mergeMetadata(objects)
 
 mergeMetadata <- function(x) {
   

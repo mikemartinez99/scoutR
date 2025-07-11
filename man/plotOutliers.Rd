@@ -23,14 +23,17 @@ plotOutliers(metadata, variable, outlierData, outDir, width, height)
 A ggplot object
 }
 \description{
-Generates publication quality violin plots showing outlier distributions for a QC metric. Can be used in conjunction
-with \code{ggpubr::ggarrange} to plot individual outlier plots as long as a panelled plot.
+Generates publication quality violin plots showing outlier
+distributions for any QC metric. Can be used in conjunction
+with \code{ggpubr::ggarrange} to plot individual outlier plots as well as a paneled plot.
 }
 \examples{
-# Run `isOutlier` function
-outliers <- isOutlier(metadata$nCount_peaks, type = "higher", nmads = 5)
-outlierDF <- as.data.frame(outliers)
-outlierDF$barcode <- rownames(metadata) 
-metadata[[nCount_peaks_outliers]] <- outliers
-plotOutliers(outliers, "nCount_peaks", "nCount_peaks_outliers", outDir, width = 10, height = 10)
+# Run after using `markOutliers`
+plotOutliers(metadata = metadata, 
+variable = "nCount_peaks", 
+outlierData = "nCount_peaks_outliers", 
+outDir = outputDir, 
+width = 10, 
+height = 10)
+
 }

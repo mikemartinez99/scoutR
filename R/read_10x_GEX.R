@@ -1,15 +1,13 @@
+#' @name read_10x_GEX
+#' 
 #' @title read_10x_GEX
 #' 
 #' @description
-#' When multiple samples are present, `read_10x_GEX` can read each sample's filtered feature barcode matrix h5 file
-#' and generate a seurat object for each. Each of these seurat objects is then combined into a list of objects.
+#' When multiple samples are present, `read_10x_GEX` can read each sample's 
+#' filtered feature barcode matrix h5 file and generate a `Seurat` object for each. 
+#' Each of these seurat objects is then combined into a list of objects.
 #' This function can be easily parallelized using `purrr::map`
 #' 
-#' @importFrom purrr map 
-#' @import Seurat
-#' 
-#' @export
-#'
 #' @param sampleDir Path to the sample directory containing multiple subfolders (one per sample)
 #' @param sample A vector of sample names that correspond to how subfolders in `sampleDir` are named
 #' @param ident A vector of desired ident names for seurat object. Idents must correspond to same order in `sample`
@@ -19,13 +17,24 @@
 #' @returns A list of seurat objects (one per sample)
 #'
 #' @examples # Path to sample directory
-#' @examples wd <- "/my/path/to/data/"
-#' @examples # Vector of sample IDs
-#' @examples sampleIDs <- c("S1", "S2", "S3")
-#' @examples # Vector of idents
-#' @examples idents <- c("A", "B", "C")
-#' @examples # Call the function
-#' @examples seuratList <- map(samples, ~ read_10x_multiGEX(.x, ident = idents, min.cells = 10, min.features = 100))
+#' wd <- "/my/path/to/data/"
+#' # Vector of sample IDs
+#' sampleIDs <- c("S1", "S2", "S3")
+#' # Vector of idents
+#' idents <- c("A", "B", "C")
+#' # Call the function
+#' seuratList <- map(samples, 
+#'   ~ read_10x_multiGEX(
+#'     .x, 
+#'     ident = idents, 
+#'     min.cells = 10, 
+#'     min.features = 100)
+#'     )
+#' 
+#' @importFrom purrr map 
+#' @import Seurat
+#' 
+#' @export
 
 read_10x_GEX <- function(sampleDir, sample, ident, min.cells, min.features) {
   print(sample)

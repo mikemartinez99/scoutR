@@ -2,18 +2,18 @@
 % Please edit documentation in R/mergeMetadata.R
 \name{mergeMetadata}
 \alias{mergeMetadata}
-\title{mergeMeta}
+\title{mergeMetadata}
 \usage{
 mergeMetadata(x)
 }
 \arguments{
-\item{x}{list of Seurat objects (could be named or un-named, but a named list is recommended)}
+\item{x}{A named-list of Seurat objects}
 }
 \value{
 A dataframe of merged metadata
 }
 \description{
-Quick way to merge metadata actoss multiple Seurat objects into one master dataframe for plotting purposes
+Efficiently merge metadata across multiple Seurat objects into one master dataframe.
 }
 \examples{
 # list of seurat objects with names
@@ -22,4 +22,5 @@ objects <- c("obj1", "obj2", "obj3", "obj4")
 sampleIDs <- c("S1", "S2", "S3", "S4")
 names(objects) <- sampleIDs
 metadata <- mergeMetadata(objects)
+
 }

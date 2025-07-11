@@ -19,16 +19,26 @@ qcRidges(metadata, variable, sampleColors, figDir, width, height)
 A ggplot object
 }
 \description{
-Generates publication quality quality control ridgeplots. Requires that you concatenate all
-sample metadata across multiple objects into one dataframe. Can be used in conjunction with \code{ggpubr::ggarrange}
-to plot panelled figure of all QC metrics.
+Generates publication quality quality control ridge plots.
+Can be used in conjunction with \code{ggpubr::ggarrange}
+to plot paneled figure of all QC metrics.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedViolins <- ggarrange(qcRidges(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir),
-qcRidges(metadata, "atac_peak_region_fragments", colors, figDir, width = 8, height = 10),
-qcRidges(metadata, "TSS.enrichment", colors, figDir, width = 8, height = 10),
-qcRidges(metadata, "nucleosome_signal", colors, figDir, width = 8, height = 10),
-qcRidges(metadata, "nFeature_peaks", colors, figDir, width = 8, height = 10)
-ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
+arrangedViolins <- ggarrange(
+  qcRidges(metadata, 
+    "pct_reads_in_peaks", 
+    logTransform = FALSE, 
+    colors, 
+    figDir,
+    width = 8,
+    height = 10),
+  qcRidges(metadata, 
+    "atac_peak_region_fragments", 
+    colors, 
+    figDir, 
+    width = 8, 
+    height = 10)
+   )
+
 }

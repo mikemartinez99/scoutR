@@ -33,10 +33,13 @@ read_10x_ATAC(
 A list of seurat objects (one per sample)
 }
 \description{
-When multiple samples are present, \code{read_10x_ATAC} can read each sample's filtered feature barcode matrix h5 file
-and generate a \code{ChromatinAssay} and \code{Seurat} object for each. Each of these objects is then combined into a list of objects.
-This function can be easily parallelized using \code{purrr::map}. This function requires that you have your organism annotations as a \code{GRanges}
-object and blacklist region file in bed format. By default, it will output density plots of nCount peaks vs TSS enrichment.
+When multiple samples are present, \code{read_10x_ATAC} can read each sample's
+filtered feature barcode matrix h5 file and generate a \code{ChromatinAssay} and
+\code{Seurat} object for each. Each of these objects is then combined into a list
+of objects. This function can be easily parallelized using \code{purrr::map}.
+This function requires that you have your organism annotations as a \code{GRanges}
+object and blacklist region file in bed format. By default, it will output
+density plots of nCount peaks vs TSS enrichment.
 }
 \examples{
 # Path to sample directory and output directory
@@ -50,5 +53,15 @@ idents <- c("A", "B", "C")
 anno <- readRDS("path/to/annotations.Rds")
 blacklist <- read.csv("/path/to/blacklist.bed", sep = "\t")
 # Call the function
-seurat_list <- map(samples, ~ run_atac_qc_filtered(.x, wd, anno, min.cells = 10, min.features = 200, blacklist, outDir))
+seurat_list <- map(samples, 
+  ~ run_atac_qc_filtered(
+    .x, 
+    wd, 
+    anno, 
+    min.cells = 10, 
+    min.features = 200, 
+    blacklist, 
+    outDir)
+    )
+
 }

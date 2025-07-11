@@ -1,19 +1,19 @@
+#' @name calcMAD
+#' Calculate MAD-based Thresholds for a Metadata Variable
+#' 
 #' @title calcMAD
 #' 
 #' @description
-#' Calculates median average deviation for a set value for a variable of interest to help quantitatively choose thresholds
-#' 
-#' @importFrom purrr map 
-#' @import Seurat
-#' @import scuttle
+#' Calculates median average deviation for a set value for a variable of 
+#' interest to help quantitatively choose thresholds
 #'
-#' @param x A valid Seurat object
-#' @param variable A column name in metadata to be tested
+#' @param x A Seurat object
+#' @param variable A valid column name in metadata to be tested
 #' @param nmads The number of median absolute deviations to consider
 #' @param bound One of "higher", or "lower"
 #'
-#'
 #' @returns A single numeric value representing the value at the specified nMAD
+#' 
 #' @examples
 #' # Calculate an upper bound on a single Seurat object
 #' calcMAD(
@@ -22,6 +22,10 @@
 #'   nmads = 5,
 #'   bound = "higher")
 #' 
+#' @importFrom purrr map 
+#' @importFrom stats mad median
+#' @import Seurat
+#' @import scuttle
 #' 
 #' @export
 

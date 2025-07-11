@@ -1,18 +1,16 @@
+#' @name read_10x_ATAC
+#' 
 #' @title read_10x_ATAC
 #' 
 #' @description
-#' When multiple samples are present, `read_10x_ATAC` can read each sample's filtered feature barcode matrix h5 file
-#' and generate a `ChromatinAssay` and `Seurat` object for each. Each of these objects is then combined into a list of objects.
-#' This function can be easily parallelized using `purrr::map`. This function requires that you have your organism annotations as a `GRanges`
-#' object and blacklist region file in bed format. By default, it will output density plots of nCount peaks vs TSS enrichment.
+#' When multiple samples are present, `read_10x_ATAC` can read each sample's 
+#' filtered feature barcode matrix h5 file and generate a `ChromatinAssay` and 
+#' `Seurat` object for each. Each of these objects is then combined into a list 
+#' of objects. This function can be easily parallelized using `purrr::map`. 
+#' This function requires that you have your organism annotations as a `GRanges`
+#' object and blacklist region file in bed format. By default, it will output 
+#' density plots of nCount peaks vs TSS enrichment.
 #' 
-#' @importFrom purrr map 
-#' @import Seurat
-#' @import Signac
-#' @import GenomicRanges
-#' 
-#' @export
-#'
 #' @param sample A sample name (must be same name as your cellranger outputs to dynamically construct file paths)
 #' @param files_dir A directory path ending in "/" where raw 10x data lives
 #' @param annotations A GRanges object with organism annotations 
@@ -24,17 +22,33 @@
 #' @returns A list of seurat objects (one per sample)
 #' 
 #' @examples # Path to sample directory and output directory
-#' @examples wd <- "/my/path/to/data/"
-#' @examples outDir <- "/my/path/to/data/outputs/"
-#' @examples # Vector of sample IDs
-#' @examples sampleIDs <- c("S1", "S2", "S3")
-#' @examples # Vector of idents
-#' @examples idents <- c("A", "B", "C")
-#' @examples # Read in annotations and blacklist bed
-#' @examples anno <- readRDS("path/to/annotations.Rds")
-#' @examples blacklist <- read.csv("/path/to/blacklist.bed", sep = "\t")
-#' @examples # Call the function
-#' @examples seurat_list <- map(samples, ~ run_atac_qc_filtered(.x, wd, anno, min.cells = 10, min.features = 200, blacklist, outDir))
+#' wd <- "/my/path/to/data/"
+#' outDir <- "/my/path/to/data/outputs/"
+#' # Vector of sample IDs
+#' sampleIDs <- c("S1", "S2", "S3")
+#' # Vector of idents
+#' idents <- c("A", "B", "C")
+#' # Read in annotations and blacklist bed
+#' anno <- readRDS("path/to/annotations.Rds")
+#' blacklist <- read.csv("/path/to/blacklist.bed", sep = "\t")
+#' # Call the function
+#' seurat_list <- map(samples, 
+#'   ~ run_atac_qc_filtered(
+#'     .x, 
+#'     wd, 
+#'     anno, 
+#'     min.cells = 10, 
+#'     min.features = 200, 
+#'     blacklist, 
+#'     outDir)
+#'     )
+#' 
+#' @importFrom purrr map 
+#' @import Seurat
+#' @import Signac
+#' @import GenomicRanges
+#' 
+#' @export
 
 
 read_10x_ATAC <- function(sample, files_dir, annotations, min.cells, min.features, blacklist, figDir){

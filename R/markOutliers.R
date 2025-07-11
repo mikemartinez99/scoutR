@@ -1,26 +1,45 @@
+#' @name markOutliers
+#' Creates new outlier columns in Seurat metadata slot for variables of interest.
+#' 
 #' @title markOutliers
 #' 
 #' @description
-#' Wrapper function for `scuttle::isOutlier`. If multiple samples need to be used, utilize `purrr::map`
+#' Wrapper function for `scuttle::isOutlier`. Calculates outliers based on 
+#' median-average-deviations (MAD). Can be parallelized across multiple samples
+#' using `purrr::map`
 #' 
-#' @importFrom purrr map 
-#' @import Seurat
-#' @import scuttle
-#' @export
 #'
 #' @param x A seurat object
-#' @param vars A vector column names in seurat object metadata slot to be tested for outliers
-#' @param nmad The number of median absolute deviations to consider a cell an outlier. 3-5 is recommended. 3 is more stringent. 
-#' @param bound One of "higher", "lower", or "both"
-#'
+#' @param vars A vector column names in Seurat object metadata slot to be tested
+#' @param nmad The number of median absolute deviations to consider a cell an outlier. 
 #'
 #' @returns A list of seurat objects (one per sample)
 #'
-#' @examples # Call the function on a single sample
-#' @examples outlierObj <- markoutliers(seuratObj, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher")
-#' @examples # Call the function across multiple Seurat objects
-#' @examples OutlierList <- map(samples, ~ markOutliers(.x, vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"), nmad = 5, bound = "higher"))
-
+#' @examples
+#' # Call the function on a single Seurat object
+#' outlierObj <- markOutliers(
+#'   seuratObj,
+#'   vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"),
+#'   nmad = 5,
+#'   bound = "higher"
+#' )
+#'
+#' # Apply the function across a list of Seurat objects using purrr::map
+#' OutlierList <- purrr::map(
+#'   samples,
+#'   ~ markOutliers(
+#'     .x,
+#'     vars = c("nCount_RNA", "nFeature_RNA", "percentMT", "log10GenesPerUMI"),
+#'     nmad = 5,
+#'     bound = "higher"
+#'   )
+#' )
+#'
+#' @importFrom purrr map 
+#' @import Seurat
+#' @import scuttle
+#' 
+#' @export
 
 markOutliers <- function(x, vars = c(...), nmad, bound) {
   #----- Input checks
@@ -54,7 +73,7 @@ markOutliers <- function(x, vars = c(...), nmad, bound) {
     meta <- x@meta.data
     
     #----- Calculate outliers
-    outliers <- isOutlier(meta[[i]], type = bound, nmads = nmad)
+    outliers <- scuttle::isOutlier(meta[[i]], type = bound, nmads = nmad)
     meta[[resCol]] <- outliers
   }
   

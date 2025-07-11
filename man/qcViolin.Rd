@@ -33,16 +33,27 @@ qcViolin(
 A ggplot object
 }
 \description{
-Generates publication quality quality control violins. Requires that you concatenate all
-sample metadata across multiple objects into one dataframe. Can be used in conjunction with \code{ggpubr::ggarrange}
-to plot panelled figure of all QC metrics.
+Generates publication quality quality control violins.
 }
 \examples{
 # Generate individual plots as well as a combined one
-arrangedViolins <- ggarrange(qcVioli(metadata, "pct_reads_in_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "atac_peak_region_fragments", logTransform = TRUE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "TSS.enrichment", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "nucleosome_signal", logTransform = FALSE, colors, figDir, width = 8, height = 8),
-qcViolin(metadata, "nFeature_peaks", logTransform = FALSE, colors, figDir, width = 8, height = 8))
-ggsave(paste0(figDir, "ATAC_Violin_Summary.png"), arrangedViolins, width = 16, height = 10)
+arrangedViolins <- ggarrange(
+  qcViolin(
+    metadata, 
+    "pct_reads_in_peaks", 
+    logTransform = FALSE, 
+    colors = colors, 
+    figDir = figDir, 
+    width = 8, 
+    height = 8),
+  qcViolin(
+    metadata, 
+    "atac_peak_region_fragments", 
+    logTransform = TRUE, 
+    colors = colors, 
+    figDir = figDir, 
+    width = 8, 
+    height = 8)
+   )
+
 }
