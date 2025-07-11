@@ -51,7 +51,11 @@ library(scoutR)
 
 For a brief demo of functionalities, see [The scoutR Vignette](https://github.com/mikemartinez99/scoutR/blob/main/vignettes/scoutR.md)
 
+## Change Log
 
+**Version 0.0.1** 
+- Added `read_10x_GEX` `read_10x_ATAC` `mergeMetadata` `plotOutliers` `qcViolin` `qcThreshold` `qcRidges` `qcScatter` `markOutliers` `trackCells` and `calcMAD`
+- Added basic scoutR vignette (to be expanded upon at a later-date)
 
 ## Contact
 
