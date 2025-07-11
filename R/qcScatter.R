@@ -1,5 +1,3 @@
-#' @name qcScatter
-#' 
 #' @title qcScatter
 #' 
 #' @description Generates publication quality quality control scatter plot for 2 

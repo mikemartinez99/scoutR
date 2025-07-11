@@ -1,5 +1,3 @@
-#' @name read_10x_GEX
-#' 
 #' @title read_10x_GEX
 #' 
 #' @description

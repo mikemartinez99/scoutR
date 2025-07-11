@@ -1,5 +1,3 @@
-#' @name qcThreshold
-#'
 #' @title qcThreshold
 #' 
 #' @description Generates publication quality quality control violins showing thresholds. Requires that you concatenate all

@@ -1,6 +1,3 @@
-#' @name markOutliers
-#' Creates new outlier columns in Seurat metadata slot for variables of interest.
-#' 
 #' @title markOutliers
 #' 
 #' @description

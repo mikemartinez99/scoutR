@@ -1,5 +1,3 @@
-#' @name read_10x_ATAC
-#' 
 #' @title read_10x_ATAC
 #' 
 #' @description

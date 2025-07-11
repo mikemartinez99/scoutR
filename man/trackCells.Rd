@@ -9,7 +9,8 @@ trackCells(sampleList, thresholds)
 \arguments{
 \item{sampleList}{A named list of \code{Seurat} objects with valid meta.data slots}
 
-\item{thresholds}{A named list of expressions to pass to \code{seurat::subset} (the names will serve as column names in the output dataframe)}
+\item{thresholds}{A named list of expressions to pass to \code{seurat::subset}
+(the names will serve as column names in the output dataframe)}
 }
 \value{
 A dataframe
@@ -23,7 +24,7 @@ This function takes into account barcodes that are "double-dippers" across diffe
 metric (i.e., a barcode that is filtered independently across multiple metrics.)
 }
 \examples{
-# Generate individual plots as well as a combined one
+# Generate individual plots as well as a merged plot
 atacList <- list("obj1", "obj2", "obj3")
 thresholds <- list(
   pct_reads_in_peaks = "pct_reads_in_peaks > 50",

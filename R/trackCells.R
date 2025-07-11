@@ -1,5 +1,3 @@
-#' @name trackCells
-#' 
 #' @title trackCells
 #' 
 #' @description Generate a data-frame showing how many cells you lose for each 
@@ -10,11 +8,12 @@
 #' metric (i.e., a barcode that is filtered independently across multiple metrics.) 
 #' 
 #' @param sampleList A named list of `Seurat` objects with valid meta.data slots
-#' @param thresholds A named list of expressions to pass to `seurat::subset` (the names will serve as column names in the output dataframe)
+#' @param thresholds A named list of expressions to pass to `seurat::subset` 
+#' (the names will serve as column names in the output dataframe)
 #'
 #' @returns A dataframe
 #' 
-#' @examples # Generate individual plots as well as a combined one
+#' @examples # Generate individual plots as well as a merged plot
 #' atacList <- list("obj1", "obj2", "obj3")
 #' thresholds <- list(
 #'   pct_reads_in_peaks = "pct_reads_in_peaks > 50",

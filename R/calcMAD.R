@@ -1,6 +1,3 @@
-#' @name calcMAD
-#' Calculate MAD-based Thresholds for a Metadata Variable
-#' 
 #' @title calcMAD
 #' 
 #' @description

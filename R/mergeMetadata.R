@@ -1,5 +1,3 @@
-#' @name mergeMetadata
-#' 
 #' @title mergeMetadata
 #' 
 #' @description

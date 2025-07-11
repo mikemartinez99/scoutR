@@ -1,5 +1,3 @@
-#' @name plotOutliers
-#' 
 #' @title plotOutliers
 #' 
 #' @description Generates publication quality violin plots showing outlier 

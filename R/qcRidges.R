@@ -1,5 +1,3 @@
-#' @name qcRidges
-#' 
 #' @title qcRidges
 #' 
 #' @description Generates publication quality quality control ridge plots. 

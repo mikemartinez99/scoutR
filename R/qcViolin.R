@@ -1,5 +1,3 @@
-#' @name qcViolin
-#' 
 #' @title qcViolin
 #' 
 #' @description Generates publication quality quality control violins. 
