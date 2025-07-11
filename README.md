@@ -1,6 +1,6 @@
 # Single-cell Omics Utilities in R (scoutR)
 
-![status](https://img.shields.io/badge/status-in--development-orange)
+![status](https://img.shields.io/badge/status-active--development-orange)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![R Version](https://img.shields.io/badge/R-4.4.3-blue)
 ![version](https://badgen.net/badge/version/0.0.1/blue)
