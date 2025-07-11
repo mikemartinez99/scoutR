@@ -3,6 +3,7 @@
 ![status](https://img.shields.io/badge/status-in--development-orange)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![R Version](https://img.shields.io/badge/R-4.4.3-blue)
+![version](https://badgen.net/badge/version/0.0.1/blue)
 
 A collection of utility and plotting functions to streamline the processing of single-cell omics data (supports scRNA, scATAC, and 10X multiome)
 
