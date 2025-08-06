@@ -5,9 +5,8 @@
 ![R Version](https://img.shields.io/badge/R-4.4.3-blue)
 ![version](https://badgen.net/badge/version/0.0.1/blue)
 
-A collection of single-cell omics utility functions to aid in data-wrangling, preprocessing, quality-control and plotting automation to streamline and unify analyses. 
+A collection of single-cell omics utility functions to aid in data-wrangling, preprocessing, quality-control and plotting automation to streamline and unify analyses for Seurat objects.
 
-Currently supports scRNA, scATAC, and 10X Multiome. 
 
 <img src="/img/SCoutR_HexLogo.png" width="350px" height="400px" />
 
